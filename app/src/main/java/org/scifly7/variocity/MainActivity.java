@@ -1,9 +1,12 @@
 package org.scifly7.variocity;
 
+import android.content.Intent;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.Menu;
 import android.view.MenuItem;
+import android.view.View;
+import android.widget.Switch;
 
 public class MainActivity extends AppCompatActivity {
 
@@ -11,6 +14,8 @@ public class MainActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
+
+        System.out.println("**** Main Constructor Called! ****");
     }
 
     @Override
@@ -33,5 +38,20 @@ public class MainActivity extends AppCompatActivity {
         }
 
         return super.onOptionsItemSelected(item);
+    }
+
+
+    public void onSwt1Click(View v) {
+
+        Intent intent = new Intent(getApplicationContext(), SensorLoggerService.class);
+
+        if( ((Switch) v).isChecked() ) {
+            System.out.println("ON");
+            startService(intent);
+
+        } else {
+            System.out.println("OFF");
+            stopService(intent);
+        }
     }
 }
